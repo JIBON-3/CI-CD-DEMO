@@ -1,25 +1,22 @@
-name : Simple Python CI
-on:(push)
+name: Simple Python CI
+
+on: [push]
 
 jobs:
-    build:
-            runs-on: ubunu-Latest
+  build:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
 
-               steps:
-                 - name: Checkout code
-                   user: action/setup-python@v3
-
-                 - name: Set up Python
-                   user: action/setup-python@v4
-                   with:
-                      python-version: "3.9"
-
-
-                   - name: Install Dependencies
-                     run: pip install --upgrade pip
-
+      - name: Install Dependencies
+        run: pip install --upgrade pip
 
       - name: Run Script
         run: python hello.py
